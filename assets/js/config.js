@@ -10,7 +10,7 @@ const CONFIG = {
   logoNome: "C&M ELETRICA",
 
   // Telefone WhatsApp no formato internacional: 55 + DDD + número (somente dígitos)
-  whatsapp: "5541995353529",
+  whatsapp: "554190000000",
 
   // Região de atendimento
   cidade: "Curitiba",

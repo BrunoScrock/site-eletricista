@@ -46,7 +46,7 @@ Arquivo: `assets/js/config.js`
 const CONFIG = {
   empresa: "C&M Automação e Elétrica",
   logoNome: "C&M ELETRICA",
-  whatsapp: "5541995353529",
+  whatsapp: "554190000000",
   cidade: "Curitiba",
   atendimento: "Curitiba e Região Metropolitana",
   horario: "Atendimento 24 horas",
@@ -101,6 +101,8 @@ Tudo que depende desses dados é preenchido automaticamente pelo `script.js` ao 
 
 > O atributo `data-images` lista as fotos do carrossel. O `data-index` inicia em `0`.
 
+> **Importante:** as obras de exemplo (`obra-01`, `obra-02`, `obra-03`) usam placeholders `.svg`. Ao colocar fotos reais, use a extensão correta do arquivo (`imagem-01.jpg`, `imagem-01.png` etc.) e **atualize as referências** em `data-images` e `src` para a mesma extensão. Por exemplo, se a foto for `imagem-01.jpg`, a referência deve ser `assets/images/portfolio/obra-04/imagem-01.jpg`.
+
 ## 5. Onde alterar serviços
 
 ### Categorias principais (cards)
@@ -140,7 +142,7 @@ O site usa [Lucide Icons](https://lucide.dev/icons). Substitua `data-lucide="hom
 
 Único lugar: `assets/js/config.js`, campo `whatsapp`.
 
-Formato: `55` + DDD + número, **somente dígitos**. Ex.: `5541995353529`.
+Formato: `55` + DDD + número, **somente dígitos**. Ex.: `554190000000`.
 
 O `script.js` monta as URLs `https://api.whatsapp.com/send?phone=...&text=...` automaticamente para:
 

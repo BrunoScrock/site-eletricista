@@ -79,7 +79,7 @@ const CONFIG = {
 };
 ```
 
-Exemplo: `5541995353529`.
+Exemplo: `554190000000`.
 
 Todos os botões do site usam essa configuração.
 
@@ -117,6 +117,7 @@ Recomendações:
 
 - Use imagens JPG ou WebP comprimidas (máximo ~200–400 KB cada).
 - Mantenha a proporção aproximada 16:10 para boa exibição.
+- As obras de exemplo usam placeholders `.svg`. Ao adicionar fotos reais, atualize a extensão nas referências do `index.html` (`data-images` e `src`) para a extensão real do arquivo (ex.: `.jpg`).
 
 ## 8. Como adicionar novos serviços
 
