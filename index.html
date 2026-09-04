@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C&M Automação e Elétrica | Eletricista em Curitiba</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Eletricista profissional em Curitiba e Região Metropolitana. Soluções elétricas e automação residencial, predial, comercial e industrial. Atendimento 24 horas, orçamento rápido pelo WhatsApp.">
+  <meta name="theme-color" content="#0F172A">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="C&M Automação e Elétrica">
+
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo/logo-placeholder.svg">
+
+  <!-- Open Graph básico -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="C&M Automação e Elétrica | Eletricista em Curitiba">
+  <meta property="og:description" content="Soluções elétricas e automação residencial, predial, comercial e industrial. Atendimento 24 horas em Curitiba e Região Metropolitana.">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:image" content="assets/images/hero/hero-placeholder.svg">
+  <meta property="og:image:alt" content="C&M Automação e Elétrica">
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Ícones: lucide (leve e sob demanda) -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       CABEÇALHO FIXO
+  ============================================================ -->
+  <header id="topo">
+    <div class="container header-content">
+      <a href="#topo" class="logo" aria-label="Página inicial">
+        <i data-lucide="zap" aria-hidden="true"></i>
+        <span id="logo-nome">C&M ELETRICA</span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Menu principal">
+        <ul>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#especialidades">Especialidades</a></li>
+          <li><a href="#obras">Obras Realizadas</a></li>
+          <li><a href="#atendimento">Área de Atendimento</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#" class="btn-header" onclick="enviarOrcamento(); return false;">
+          <i data-lucide="file-text" aria-hidden="true"></i>
+          <span>Solicitar Orçamento</span>
+        </a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="navMenu">
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO / BANNER PRINCIPAL
+    ============================================================ -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <div class="hero-badges" id="hero-badges">
+            <span class="badge"><i data-lucide="clock" aria-hidden="true"></i> <span id="badge-horario">Atendimento 24 Horas</span></span>
+            <span class="badge"><i data-lucide="shield-check" aria-hidden="true"></i> Experiência profissional</span>
+            <span class="badge"><i data-lucide="timer" aria-hidden="true"></i> Orçamento rápido</span>
+          </div>
+
+          <h1>Soluções Elétricas e Automação <span>Residencial e Industrial</span></h1>
+          <p id="hero-subtitulo">Assistência e manutenção com rapidez, normas técnicas e qualidade em toda região de Curitiba. Atendimento residencial, comercial, predial e industrial.</p>
+
+          <a href="#" class="btn-cta-hero" onclick="enviarOrcamento(); return false;">
+            <i data-lucide="message-square" aria-hidden="true"></i> Solicitar Orçamento
+          </a>
+        </div>
+
+        <div class="hero-card-preview">
+          <div class="hero-card-head">
+            <i data-lucide="award" aria-hidden="true"></i>
+            <div>
+              <h3>Profissionalismo e Segurança</h3>
+              <p>Serviços executados com responsabilidade e boas práticas técnicas.</p>
+            </div>
+          </div>
+          <hr>
+          <p class="hero-card-text">Atendimento prioritário para situações de emergência, pane elétrica, curtos-circuitos e novos projetos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SERVIÇOS (4 CATEGORIAS)
+    ============================================================ -->
+    <section id="servicos" class="services-pillars">
+      <div class="container">
+        <div class="section-title">
+          <h2>O que você precisa hoje?</h2>
+          <p>Atendimento especializado segmentado para cada tipo de estrutura</p>
+        </div>
+
+        <div class="pillars-grid">
+
+          <article class="pillar-card">
+            <div class="pillar-icon"><i data-lucide="home" aria-hidden="true"></i></div>
+            <h3>Residencial</h3>
+            <p>Serviços elétricos para casas e apartamentos.</p>
+            <ul class="pillar-list">
+              <li>Instalação de tomadas</li>
+              <li>Instalação de chuveiros</li>
+              <li>Iluminação</li>
+              <li>Manutenção elétrica</li>
+              <li>Quadros elétricos</li>
+              <li>Novas instalações e reparos</li>
+            </ul>
+            <a href="#" class="btn-card" onclick="enviarOrcamento('Residencial'); return false;">
+              Solicitar Orçamento <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </a>
+          </article>
+
+          <article class="pillar-card">
+            <div class="pillar-icon"><i data-lucide="building-2" aria-hidden="true"></i></div>
+            <h3>Predial</h3>
+            <p>Serviços para condomínios e edifícios.</p>
+            <ul class="pillar-list">
+              <li>Manutenção elétrica</li>
+              <li>Bombas de recalque</li>
+              <li>Centros de medição</li>
+              <li>Quadros elétricos</li>
+              <li>Manutenção preventiva</li>
+              <li>Manutenção corretiva</li>
+            </ul>
+            <a href="#" class="btn-card" onclick="enviarOrcamento('Predial'); return false;">
+              Solicitar Orçamento <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </a>
+          </article>
+
+          <article class="pillar-card">
+            <div class="pillar-icon"><i data-lucide="store" aria-hidden="true"></i></div>
+            <h3>Comercial</h3>
+            <p>Serviços para lojas e empresas.</p>
+            <ul class="pillar-list">
+              <li>Instalações elétricas</li>
+              <li>Iluminação</li>
+              <li>Adequações</li>
+              <li>Redes</li>
+              <li>Manutenção</li>
+              <li>Instalações comerciais</li>
+            </ul>
+            <a href="#" class="btn-card" onclick="enviarOrcamento('Comercial'); return false;">
+              Solicitar Orçamento <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </a>
+          </article>
+
+          <article class="pillar-card">
+            <div class="pillar-icon"><i data-lucide="factory" aria-hidden="true"></i></div>
+            <h3>Industrial</h3>
+            <p>Serviços para indústrias.</p>
+            <ul class="pillar-list">
+              <li>Painéis elétricos</li>
+              <li>Motores</li>
+              <li>Inversores</li>
+              <li>CLP</li>
+              <li>Automação industrial</li>
+              <li>Manutenção elétrica</li>
+            </ul>
+            <a href="#" class="btn-card" onclick="enviarOrcamento('Industrial'); return false;">
+              Solicitar Orçamento <i data-lucide="arrow-right" aria-hidden="true"></i>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ESPECIALIDADES
+    ============================================================ -->
+    <section id="especialidades" class="tech-services">
+      <div class="container">
+        <div class="section-title">
+          <h2>Principais Serviços Prestados</h2>
+          <p>Equipe qualificada para soluções simples ou complexas</p>
+        </div>
+
+        <div class="services-list-grid">
+          <div class="service-item"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span>Readequação de painéis de distribuição</span></div>
+          <div class="service-item"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span>Entradas de energia padronizadas</span></div>
+          <div class="service-item"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span>Carregadores para veículos elétricos</span></div>
+          <div class="service-item"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span>Inversores de frequência</span></div>
+          <div class="service-item"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span>CLP e Automação</span></div>
+          <div class="service-item"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span>Redes de lógica, CFTV e incêndio</span></div>
+          <div class="service-item"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span>Manutenção preventiva</span></div>
+          <div class="service-item"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span>Manutenção emergencial</span></div>
+          <div class="service-item"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span>Instalações elétricas</span></div>
+          <div class="service-item"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span>Iluminação</span></div>
+          <div class="service-item"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span>Quadros elétricos</span></div>
+          <div class="service-item"><i data-lucide="check-circle-2" aria-hidden="true"></i> <span>Adequações elétricas</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         POR QUE ESCOLHER
+    ============================================================ -->
+    <section id="por-que-escolher" class="why-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Por que escolher a C&M Automação e Elétrica?</h2>
+          <p>Confiança, segurança e praticidade na hora de resolver suas necessidades elétricas</p>
+        </div>
+
+        <div class="why-grid">
+          <article class="why-card">
+            <div class="why-icon"><i data-lucide="briefcase" aria-hidden="true"></i></div>
+            <h3>Experiência</h3>
+            <p>Profissionais com experiência em serviços elétricos residenciais, prediais, comerciais e industriais.</p>
+          </article>
+
+          <article class="why-card">
+            <div class="why-icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
+            <h3>Segurança</h3>
+            <p>Execução responsável e seguindo boas práticas técnicas.</p>
+          </article>
+
+          <article class="why-card">
+            <div class="why-icon"><i data-lucide="zap" aria-hidden="true"></i></div>
+            <h3>Atendimento rápido</h3>
+            <p>Contato facilitado pelo WhatsApp com resposta ágil.</p>
+          </article>
+
+          <article class="why-card">
+            <div class="why-icon"><i data-lucide="calculator" aria-hidden="true"></i></div>
+            <h3>Orçamento</h3>
+            <p>Avaliação da necessidade do cliente antes da execução do serviço.</p>
+          </article>
+
+          <article class="why-card">
+            <div class="why-icon"><i data-lucide="building" aria-hidden="true"></i></div>
+            <h3>Atendimento completo</h3>
+            <p>Atendimento residencial, comercial, predial e industrial em um só lugar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         OBRAS REALIZADAS (PORTFÓLIO)
+    ============================================================ -->
+    <section id="obras" class="portfolio-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Obras Realizadas</h2>
+          <p>Confira o padrão de qualidade e organização das nossas entregas</p>
+        </div>
+
+        <div class="portfolio-grid">
+
+          <article class="portfolio-card">
+            <div class="portfolio-img" data-images='["assets/images/portfolio/obra-01/imagem-01.jpg","assets/images/portfolio/obra-01/imagem-02.jpg","assets/images/portfolio/obra-01/imagem-03.jpg"]' data-index="0">
+              <button class="carousel-btn prev" onclick="navigateCard(this, -1)" aria-label="Foto anterior">
+                <i data-lucide="chevron-left" aria-hidden="true"></i>
+              </button>
+              <img src="assets/images/portfolio/obra-01/imagem-01.jpg" alt="Montagem de Quadro de Comando" loading="lazy">
+              <button class="carousel-btn next" onclick="navigateCard(this, 1)" aria-label="Próxima foto">
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </button>
+              <span class="image-counter">1/3</span>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-category">Industrial</span>
+              <h3>Montagem de Quadro de Comando</h3>
+              <p>Quadro de comando montado com organização, identificação e segurança.</p>
+            </div>
+          </article>
+
+          <article class="portfolio-card">
+            <div class="portfolio-img" data-images='["assets/images/portfolio/obra-02/imagem-01.jpg","assets/images/portfolio/obra-02/imagem-02.jpg"]' data-index="0">
+              <button class="carousel-btn prev" onclick="navigateCard(this, -1)" aria-label="Foto anterior">
+                <i data-lucide="chevron-left" aria-hidden="true"></i>
+              </button>
+              <img src="assets/images/portfolio/obra-02/imagem-01.jpg" alt="Readequação de Centro de Medição" loading="lazy">
+              <button class="carousel-btn next" onclick="navigateCard(this, 1)" aria-label="Próxima foto">
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </button>
+              <span class="image-counter">1/2</span>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-category">Predial</span>
+              <h3>Readequação de Centro de Medição</h3>
+              <p>Readequação do centro de medição para atender às novas cargas do edifício.</p>
+            </div>
+          </article>
+
+          <article class="portfolio-card">
+            <div class="portfolio-img" data-images='["assets/images/portfolio/obra-03/imagem-01.jpg","assets/images/portfolio/obra-03/imagem-02.jpg"]' data-index="0">
+              <button class="carousel-btn prev" onclick="navigateCard(this, -1)" aria-label="Foto anterior">
+                <i data-lucide="chevron-left" aria-hidden="true"></i>
+              </button>
+              <img src="assets/images/portfolio/obra-03/imagem-01.jpg" alt="Instalação de Projeto Luminotécnico" loading="lazy">
+              <button class="carousel-btn next" onclick="navigateCard(this, 1)" aria-label="Próxima foto">
+                <i data-lucide="chevron-right" aria-hidden="true"></i>
+              </button>
+              <span class="image-counter">1/2</span>
+            </div>
+            <div class="portfolio-info">
+              <span class="portfolio-category">Residencial</span>
+              <h3>Instalação de Projeto Luminotécnico</h3>
+              <p>Instalação de iluminação integrada e eficiente para o ambiente.</p>
+            </div>
+          </article>
+
+        </div>
+        <p class="portfolio-note">Em breve, mais obras serão adicionadas ao portfólio.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ÁREA DE ATENDIMENTO
+    ============================================================ -->
+    <section id="atendimento" class="coverage-section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Área de Atendimento</h2>
+          <p id="coverage-text">Atendimento em Curitiba e Região Metropolitana</p>
+        </div>
+
+        <div class="coverage-box">
+          <i data-lucide="map-pin" aria-hidden="true"></i>
+          <p>Atendemos Curitiba e a Região Metropolitana. Em breve, estaremos listando as cidades atendidas em detalhes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CTA FINAL
+    ============================================================ -->
+    <section class="final-cta">
+      <div class="container">
+        <h2>Precisa de um eletricista?</h2>
+        <p>Entre em contato e solicite seu orçamento agora mesmo.</p>
+        <a href="#" class="btn-cta-whatsapp" onclick="enviarOrcamento(); return false;">
+          <i data-lucide="message-circle" aria-hidden="true"></i> Falar pelo WhatsApp
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       RODAPÉ
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+        <a href="#topo" class="footer-logo"><i data-lucide="zap" aria-hidden="true"></i> <span id="footer-nome">C&M Automação e Elétrica</span></a>
+        <p id="footer-desc">Soluções elétricas e automação residencial e industrial com segurança e qualidade.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Rodapé - Navegação">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#especialidades">Especialidades</a></li>
+          <li><a href="#obras">Obras Realizadas</a></li>
+          <li><a href="#atendimento">Área de Atendimento</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-contato">
+        <h4>Contato</h4>
+        <ul>
+          <li id="footer-whatsapp">
+            <i data-lucide="message-circle" aria-hidden="true"></i>
+            <a href="#" onclick="enviarOrcamento(); return false;">Atendimento via WhatsApp</a>
+          </li>
+          <li id="footer-atendimento">
+            <i data-lucide="clock" aria-hidden="true"></i> Atendimento 24 horas
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; <span id="ano-atual">2026</span> <span id="copyright-nome">C&M Automação e Elétrica</span>. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       BOTÃO FLUTUANTE WHATSAPP
+  ============================================================ -->
+  <a href="#" id="whatsapp-float" class="whatsapp-float" aria-label="Contato via WhatsApp" onclick="enviarOrcamento(); return false;">
+    <i data-lucide="message-circle" aria-hidden="true"></i>
+  </a>
+
+  <!-- Configurações e scripts -->
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

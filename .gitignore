@@ -1,0 +1,26 @@
+# Dependências e arquivos de build
+node_modules/
+dist/
+build/
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs e arquivos temporários
+*.log
+npm-debug.log*
+.tmp/
+temp/
+
+# Imagens não otimizadas / temporárias
+*.psd
+*.ai
+*~original*
