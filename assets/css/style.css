@@ -187,7 +187,7 @@ header {
    3. HERO
    -------------------------------------------------------------------------- */
 .hero {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
   color: var(--white);
   padding: 70px 0;
   position: relative;
@@ -214,7 +214,7 @@ header {
 
 .hero-text p {
   font-size: 1.1rem;
-  color: #94a3b8;
+  color: #dbeafe;
   margin-bottom: 30px;
 }
 
@@ -268,50 +268,87 @@ header {
   height: 22px;
 }
 
-.hero-card-preview {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.hero-text {
+  animation: heroUp 0.8s ease-out both;
+}
+
+.hero-photo {
+  animation: heroUp 0.9s ease-out 0.2s both;
+  position: relative;
   border-radius: var(--radius);
-  padding: 28px;
-  backdrop-filter: blur(10px);
+  overflow: hidden;
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.hero-card-head {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 16px;
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
-.hero-card-head i {
+.hero-photo:hover img {
+  transform: scale(1.03);
+}
+
+.hero-bubble {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #1e3a8a;
+  color: var(--white);
+  padding: 12px 22px;
+  border-radius: 14px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  animation: bubbleFloat 3.5s ease-in-out infinite;
+}
+
+.hero-bubble i {
+  width: 22px;
+  height: 22px;
   color: var(--secondary);
-  width: 38px;
-  height: 38px;
   flex-shrink: 0;
 }
 
-.hero-card-head h3 {
-  color: var(--white);
-  font-size: 1.05rem;
-  margin-bottom: 4px;
+.hero-bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-top-color: #1e3a8a;
+  border-bottom: none;
 }
 
-.hero-card-head p {
-  font-size: 0.9rem;
-  color: #94a3b8;
-  margin: 0;
+@keyframes heroUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.hero-card-preview hr {
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 16px;
-}
-
-.hero-card-text {
-  font-size: 0.9rem;
-  color: #cbd5e1;
-  margin: 0;
+@keyframes bubbleFloat {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-8px);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -484,7 +521,7 @@ header {
    7. POR QUE ESCOLHER
    -------------------------------------------------------------------------- */
 .why-section {
-  background-color: var(--primary);
+  background: linear-gradient(135deg, #172554 0%, #1e3a8a 100%);
   padding: 90px 0;
 }
 
@@ -702,7 +739,7 @@ header {
    10. CTA FINAL
    -------------------------------------------------------------------------- */
 .final-cta {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
   color: var(--white);
   text-align: center;
   padding: 80px 0;
@@ -715,7 +752,7 @@ header {
 }
 
 .final-cta p {
-  color: #94a3b8;
+  color: #dbeafe;
   font-size: 1.1rem;
   margin-bottom: 30px;
 }
@@ -863,6 +900,20 @@ header {
 }
 
 /* --------------------------------------------------------------------------
+   ANIMAÇÕES DE ENTRADA (REVEAL AO ROLAR)
+   -------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
    13. RESPONSIVIDADE
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
@@ -885,9 +936,10 @@ header {
     justify-content: center;
   }
 
-  .hero-card-preview {
+  .hero-photo {
     max-width: 520px;
     margin: 0 auto;
+    width: 100%;
   }
 
   .footer-grid {
@@ -971,6 +1023,26 @@ header {
 
   .hero-text p {
     font-size: 1rem;
+  }
+
+  .btn-cta-hero {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 20px;
+  }
+
+  .hero-photo img {
+    max-height: 300px;
+  }
+
+  .hero-bubble {
+    font-size: 0.85rem;
+    padding: 10px 16px;
+  }
+
+  .hero-bubble i {
+    width: 18px;
+    height: 18px;
   }
 
   .services-pillars,

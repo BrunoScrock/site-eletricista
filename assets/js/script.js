@@ -138,6 +138,46 @@ function inicializarMenuMobile() {
 }
 
 /* --------------------------------------------------------------------------
+   ANIMAÇÕES DE ENTRADA (REVEAL AO ROLAR)
+   -------------------------------------------------------------------------- */
+
+function iniciarReveal() {
+  const seletores = [
+    ".pillars-grid > *",
+    ".why-grid > *",
+    ".services-list-grid > *",
+    ".portfolio-grid > *",
+    ".section-title",
+    ".coverage-box",
+    ".final-cta > .container > *"
+  ];
+
+  const alvos = document.querySelectorAll(seletores.join(","));
+  if (!alvos.length || !("IntersectionObserver" in window)) return;
+
+  alvos.forEach((el) => {
+    el.classList.add("reveal");
+    // Atraso escalonado suave entre os itens da mesma linha
+    const indice = Array.prototype.indexOf.call(el.parentElement.children, el);
+    el.style.transitionDelay = `${(indice % 6) * 0.08}s`;
+  });
+
+  const observador = new IntersectionObserver(
+    (entradas) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("visible");
+          observador.unobserve(entrada.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  alvos.forEach((el) => observador.observe(el));
+}
+
+/* --------------------------------------------------------------------------
    INICIALIZAÇÃO
    -------------------------------------------------------------------------- */
 
@@ -153,6 +193,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+  iniciarReveal();
 
   inicializarMenuMobile();
 
