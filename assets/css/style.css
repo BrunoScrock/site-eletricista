@@ -104,51 +104,57 @@ header {
 }
 
 .logo {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 9px;
-  background: var(--white);
-  color: var(--primary);
-  padding: 6px 14px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
-  font-weight: 800;
-  white-space: nowrap;
-  transition: transform 0.25s, box-shadow 0.25s;
+  gap: 12px;
+  flex-shrink: 0;
+  transition: transform 0.25s;
 }
 
 .logo:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
-.logo i {
-  color: var(--secondary);
-  width: 26px;
-  height: 26px;
+.logo-box {
+  width: 48px;
+  height: 48px;
+  background: var(--white);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   flex-shrink: 0;
+}
+
+.logo-box i {
+  color: var(--secondary);
+  width: 28px;
+  height: 28px;
 }
 
 .logo-text {
   display: flex;
   flex-direction: column;
-  line-height: 1.05;
+  line-height: 1.15;
 }
 
 .logo-text strong {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--primary);
-  letter-spacing: 0.5px;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--white);
+  text-transform: uppercase;
 }
 
 .logo-text em {
   font-style: normal;
-  font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 2.5px;
-  color: #f97316;
+  font-size: 0.7rem;
+  font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #f97316;
+  white-space: nowrap;
 }
 
 .nav-menu ul {
@@ -1427,8 +1433,22 @@ body.no-scroll {
     --header-height: 64px;
   }
 
-  .logo {
-    font-size: 1.05rem;
+  .logo-box {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-box i {
+    width: 24px;
+    height: 24px;
+  }
+
+  .logo-text strong {
+    font-size: 1rem;
+  }
+
+  .logo-text em {
+    display: none;
   }
 
   .nav-menu {
