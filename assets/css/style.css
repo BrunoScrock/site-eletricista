@@ -403,7 +403,11 @@ header {
   transform: translateY(-8px) scale(1.02);
   transition-delay: 0s;
   border-top-color: #1e3a8a;
-  box-shadow: 0 24px 45px -12px rgba(30, 58, 138, 0.35);
+  border-color: rgba(30, 58, 138, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(30, 58, 138, 0.25),
+    0 0 24px rgba(30, 58, 138, 0.35),
+    0 0 60px -15px rgba(30, 58, 138, 0.5);
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 
