@@ -403,12 +403,13 @@ header {
   transform: translateY(-8px) scale(1.02);
   transition-delay: 0s;
   border-top-color: #1e3a8a;
-  border-color: rgba(30, 58, 138, 0.55);
-  box-shadow:
-    0 0 0 1px rgba(30, 58, 138, 0.25),
-    0 0 24px rgba(30, 58, 138, 0.35),
-    0 0 60px -15px rgba(30, 58, 138, 0.5);
+  box-shadow: 0 24px 45px -12px rgba(30, 58, 138, 0.35);
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.pillars-grid .pillar-card:hover .pillar-icon {
+  background: #1e3a8a;
+  color: #ffffff;
 }
 
 .pillar-icon {
@@ -421,6 +422,7 @@ header {
   align-items: center;
   justify-content: center;
   margin-bottom: 18px;
+  transition: background 0.3s, color 0.3s;
 }
 
 .pillar-icon i {
