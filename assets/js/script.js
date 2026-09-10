@@ -557,14 +557,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   inicializarMenuMobile();
 
-  // Clique na logo rola suavemente ao topo da página
-  const logo = document.querySelector(".logo");
-  if (logo) {
+  // Clique nas logos rola suavemente ao topo da página
+  document.querySelectorAll(".logo, .footer-logo").forEach((logo) => {
     logo.addEventListener("click", (e) => {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-  }
+  });
 
   // Converte os ícones Lucide (se a biblioteca estiver carregada)
   if (window.lucide) window.lucide.createIcons();
