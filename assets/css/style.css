@@ -618,18 +618,73 @@ header {
 }
 
 .coverflow-ambience img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: brightness(0.22) blur(32px);
   transform: scale(1.15);
   transition: opacity 900ms ease;
+  animation: ambiencePan 26s ease-in-out infinite alternate;
+}
+
+.coverflow-ambience::before,
+.coverflow-ambience::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.coverflow-ambience::before {
+  top: -20%;
+  left: -15%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.55), transparent 65%);
+  animation: ambienceDrift 16s ease-in-out infinite alternate;
+}
+
+.coverflow-ambience::after {
+  bottom: -25%;
+  right: -15%;
+  background: radial-gradient(circle, rgba(30, 64, 175, 0.6), transparent 65%);
+  animation: ambienceDrift 21s ease-in-out infinite alternate-reverse;
 }
 
 .coverflow-ambience-overlay {
   position: absolute;
   inset: 0;
+  z-index: 2;
   background: radial-gradient(circle at center, rgba(15, 23, 42, 0.35) 0%, rgba(15, 23, 42, 0.92) 100%);
+}
+
+@keyframes ambiencePan {
+  0% {
+    transform: scale(1.12) translateX(-3%) translateY(0);
+  }
+  50% {
+    transform: scale(1.2) translateX(2%) translateY(-2%);
+  }
+  100% {
+    transform: scale(1.15) translateX(0) translateY(2%);
+  }
+}
+
+@keyframes ambienceDrift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(6%, 4%) scale(1.1);
+  }
+  100% {
+    transform: translate(-5%, 6%) scale(1.05);
+  }
 }
 
 .coverflow-stage {
@@ -732,6 +787,24 @@ header {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
+.coverflow-hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px auto 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(30, 58, 138, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 5px 12px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
 .coverflow-cta {
   display: inline-flex;
   align-items: center;
@@ -824,6 +897,200 @@ header {
   width: 28px;
   background-color: var(--secondary);
   box-shadow: 0 0 10px rgba(245, 158, 11, 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   LIGHTBOX — galeria de fotos da obra
+   -------------------------------------------------------------------------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 70px 20px 30px;
+  background: rgba(8, 12, 26, 0.93);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.lightbox-close,
+.lightbox-arrow {
+  position: absolute;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.lightbox-close:hover,
+.lightbox-arrow:hover {
+  background-color: rgba(15, 23, 42, 0.9);
+}
+
+.lightbox-close {
+  top: 18px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+}
+
+.lightbox-arrow {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+}
+
+.lightbox-arrow.prev {
+  left: 14px;
+}
+
+.lightbox-arrow.next {
+  right: 14px;
+}
+
+.lightbox-close i,
+.lightbox-arrow i {
+  width: 22px;
+  height: 22px;
+}
+
+.lightbox-counter {
+  position: absolute;
+  top: 26px;
+  left: 26px;
+  z-index: 20;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 999px;
+  padding: 6px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.lightbox-figure {
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: min(92vw, 1000px);
+  animation: lightboxIn 0.35s ease;
+}
+
+.lightbox-img {
+  display: block;
+  max-width: min(92vw, 960px);
+  max-height: 66vh;
+  width: auto;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lightbox-figure figcaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  padding: 16px 0 0;
+  color: #ffffff;
+}
+
+.lightbox-tag {
+  align-self: center;
+  background: rgba(30, 58, 138, 0.6);
+}
+
+.lightbox-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.lightbox-cta {
+  margin-top: 2px;
+}
+
+.lightbox-thumbs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lightbox-thumb {
+  width: 64px;
+  height: 48px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  opacity: 0.55;
+  cursor: pointer;
+  background: transparent;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.lightbox-thumb:hover {
+  opacity: 0.85;
+}
+
+.lightbox-thumb.active {
+  opacity: 1;
+  border-color: #ffffff;
+}
+
+.lightbox-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lightbox.has-single .lightbox-arrow,
+.lightbox.has-single .lightbox-thumbs,
+.lightbox.has-single .lightbox-counter {
+  display: none;
+}
+
+@keyframes lightboxIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1219,6 +1486,31 @@ header {
     right: 8px;
   }
 
+  .lightbox-arrow {
+    width: 42px;
+    height: 42px;
+  }
+
+  .lightbox-arrow.prev {
+    left: 6px;
+  }
+
+  .lightbox-arrow.next {
+    right: 6px;
+  }
+
+  .lightbox-close {
+    width: 40px;
+    height: 40px;
+    top: 12px;
+    right: 12px;
+  }
+
+  .lightbox-thumb {
+    width: 52px;
+    height: 40px;
+  }
+
   .whatsapp-float {
     bottom: 18px;
     right: 18px;
@@ -1265,6 +1557,30 @@ header {
 
   .coverflow-arrow {
     display: none;
+  }
+
+  .lightbox {
+    padding: 64px 12px 24px;
+    gap: 14px;
+  }
+
+  .lightbox-counter {
+    top: 18px;
+    left: 14px;
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
+  .lightbox-title {
+    font-size: 1.05rem;
+  }
+
+  .lightbox-figure {
+    max-width: 100%;
+  }
+
+  .lightbox-thumbs {
+    gap: 8px;
   }
 }
 

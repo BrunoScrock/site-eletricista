@@ -98,17 +98,25 @@ O título da página, o cabeçalho e o rodapé se atualizam automaticamente.
 
 ## 7. Como adicionar novas imagens de obras
 
-As obras da galeria 3D são controladas pelo array `PORTFOLIO` em `assets/js/config.js`. Cada item representa um cartão:
+As obras da galeria 3D são controladas pelo array `PORTFOLIO` em `assets/js/config.js`. Cada item representa uma obra:
 
 ```javascript
 {
   tag: "Comercial",
   titulo: "Título da Obra",
   descricao: "Descrição curta.",
-  imagem: "assets/images/portfolio/obra-04/imagem-01.jpg",
+  imagem: "assets/images/portfolio/obra-04/imagem-01.jpg",  // capa do cartão 3D
+  imagens: [                                                 // fotos do lightbox
+    "assets/images/portfolio/obra-04/imagem-01.jpg",
+    "assets/images/portfolio/obra-04/imagem-02.jpg",
+    "assets/images/portfolio/obra-04/imagem-03.jpg"
+  ],
   categoria: "Comercial"
 }
 ```
+
+- `imagem`: foto de capa exibida no cartão 3D.
+- `imagens`: fotos exibidas na galeria ao clicar no cartão (setas, miniaturas e contador). Se a obra tiver só uma foto, pode deixar apenas `imagem` sem o campo `imagens`.
 
 Coloque as fotos em `assets/images/portfolio/obra-NN/`:
 
@@ -116,17 +124,19 @@ Coloque as fotos em `assets/images/portfolio/obra-NN/`:
 assets/images/portfolio/
 │
 ├── obra-01/
-│   └── imagem-01.jpg
+│   ├── imagem-01.jpg
+│   └── imagem-02.jpg
 │
 └── obra-02/
-    └── imagem-01.jpg
+    ├── imagem-01.jpg
+    └── imagem-02.jpg
 ```
 
 Recomendações:
 
 - Use imagens JPG ou WebP comprimidas (máximo ~200–400 KB cada).
 - Mantenha a proporção aproximada 3:4 (cartão vertical da galeria) para boa exibição.
-- Hoje o portfólio usa fotos de teste do Unsplash (links externos). Para o site definitivo, troque o campo `imagem` pelo caminho local da foto real e remova os `.svg` ilustrativos de `assets/images/portfolio/`.
+- Hoje o portfólio usa fotos de teste do Unsplash (links externos). Para o site definitivo, troque os campos `imagem`/`imagens` pelos caminhos locais das fotos reais e remova os `.svg` ilustrativos de `assets/images/portfolio/`.
 
 ## 8. Como adicionar novos serviços
 

@@ -74,6 +74,7 @@ function montarCoverflow() {
       item.titulo +
       "</h3>" +
       (item.descricao ? '<p class="coverflow-desc">' + item.descricao + "</p>" : "") +
+      (item.imagens && item.imagens.length > 1 ? '<span class="coverflow-hint">Ver todas as fotos</span>' : "") +
       '<button class="coverflow-cta" data-categoria="' +
       (item.categoria || "") +
       '">Solicitar Orçamento</button>' +
@@ -81,6 +82,10 @@ function montarCoverflow() {
     card.appendChild(content);
 
     card.addEventListener("click", () => {
+      abrirLightbox(i);
+    });
+
+    card.addEventListener("mouseenter", () => {
       if (indiceAtual(i) !== 0) irPara(i);
     });
 
@@ -185,6 +190,7 @@ function montarCoverflow() {
 
   // Navegação por teclado (setas) quando o foco está na galeria
   stage.addEventListener("keydown", (e) => {
+    if (overlay.classList.contains("open")) return;
     if (e.key === "ArrowLeft") {
       anterior();
       e.preventDefault();
@@ -216,6 +222,158 @@ function montarCoverflow() {
     { passive: true }
   );
 
+  // --------------------------------------------------------------------------
+  // LIGHTBOX — galeria de fotos da obra (aberto ao clicar no cartão central)
+  // --------------------------------------------------------------------------
+
+  const overlay = document.createElement("div");
+  overlay.className = "lightbox";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-label", "Galeria de fotos da obra");
+  overlay.innerHTML =
+    '<button class="lightbox-close" aria-label="Fechar galeria"><i data-lucide="x"></i></button>' +
+    '<div class="lightbox-counter"></div>' +
+    '<button class="lightbox-arrow prev" aria-label="Foto anterior"><i data-lucide="chevron-left"></i></button>' +
+    '<button class="lightbox-arrow next" aria-label="Próxima foto"><i data-lucide="chevron-right"></i></button>' +
+    '<figure class="lightbox-figure">' +
+    '<img class="lightbox-img" src="" alt="">' +
+    "<figcaption>" +
+    '<span class="coverflow-tag lightbox-tag"></span>' +
+    '<h3 class="lightbox-title"></h3>' +
+    '<button class="coverflow-cta lightbox-cta">Solicitar Orçamento</button>' +
+    "</figcaption>" +
+    "</figure>" +
+    '<div class="lightbox-thumbs"></div>';
+  document.body.appendChild(overlay);
+
+  let obraAtiva = 0;
+  let fotoAtiva = 0;
+
+  function fotosDaObra(i) {
+    const fotos = itens[i].imagens;
+    return Array.isArray(fotos) && fotos.length ? fotos : [itens[i].imagem];
+  }
+
+  function atualizarLightbox() {
+    const fotos = fotosDaObra(obraAtiva);
+    const item = itens[obraAtiva];
+    const imgEl = overlay.querySelector(".lightbox-img");
+    const counter = overlay.querySelector(".lightbox-counter");
+    const hasMulti = fotos.length > 1;
+
+    if (fotos.length) {
+      imgEl.src = fotos[fotoAtiva];
+      imgEl.alt = item.titulo + " - foto " + (fotoAtiva + 1) + " de " + fotos.length;
+    }
+
+    counter.textContent = hasMulti ? fotoAtiva + 1 + " / " + fotos.length : "";
+    overlay.classList.toggle("has-single", !hasMulti);
+    overlay.querySelector(".lightbox-tag").textContent = item.tag;
+    overlay.querySelector(".lightbox-title").textContent = item.titulo;
+    overlay.querySelector(".lightbox-cta").onclick = () => enviarOrcamento(item.categoria);
+
+    const thumbs = overlay.querySelector(".lightbox-thumbs");
+    thumbs.innerHTML = "";
+    if (hasMulti) {
+      fotos.forEach((src, fi) => {
+        const t = document.createElement("button");
+        t.type = "button";
+        t.className = "lightbox-thumb" + (fi === fotoAtiva ? " active" : "");
+        t.setAttribute("aria-label", "Ir para a foto " + (fi + 1));
+        const ti = document.createElement("img");
+        ti.src = src;
+        ti.alt = "";
+        ti.loading = "lazy";
+        t.appendChild(ti);
+        t.addEventListener("click", () => {
+          fotoAtiva = fi;
+          atualizarLightbox();
+        });
+        thumbs.appendChild(t);
+      });
+    }
+
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  function fotoAnterior() {
+    const fotos = fotosDaObra(obraAtiva);
+    if (fotos.length <= 1) return;
+    fotoAtiva = (fotoAtiva - 1 + fotos.length) % fotos.length;
+    atualizarLightbox();
+  }
+
+  function fotoProxima() {
+    const fotos = fotosDaObra(obraAtiva);
+    if (fotos.length <= 1) return;
+    fotoAtiva = (fotoAtiva + 1) % fotos.length;
+    atualizarLightbox();
+  }
+
+  function abrirLightbox(i) {
+    obraAtiva = i;
+    fotoAtiva = 0;
+    pararAutoplay();
+    atualizarLightbox();
+    overlay.classList.add("open");
+    document.body.classList.add("no-scroll");
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  function fecharLightbox() {
+    overlay.classList.remove("open");
+    document.body.classList.remove("no-scroll");
+    iniciarAutoplay();
+  }
+
+  overlay.querySelector(".lightbox-close").addEventListener("click", fecharLightbox);
+  overlay.querySelector(".lightbox-arrow.prev").addEventListener("click", (e) => {
+    e.stopPropagation();
+    fotoAnterior();
+  });
+  overlay.querySelector(".lightbox-arrow.next").addEventListener("click", (e) => {
+    e.stopPropagation();
+    fotoProxima();
+  });
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) fecharLightbox();
+  });
+
+  let lightboxTouchX = 0;
+  overlay.addEventListener(
+    "touchstart",
+    (e) => {
+      lightboxTouchX = e.touches[0].clientX;
+    },
+    { passive: true }
+  );
+  overlay.addEventListener(
+    "touchend",
+    (e) => {
+      const diff = e.changedTouches[0].clientX - lightboxTouchX;
+      if (Math.abs(diff) > 45) {
+        if (diff < 0) fotoProxima();
+        else fotoAnterior();
+      }
+    },
+    { passive: true }
+  );
+
+  document.addEventListener("keydown", (e) => {
+    if (!overlay.classList.contains("open")) return;
+    if (e.key === "Escape") {
+      fecharLightbox();
+      e.preventDefault();
+    } else if (e.key === "ArrowLeft") {
+      fotoAnterior();
+      e.preventDefault();
+    } else if (e.key === "ArrowRight") {
+      fotoProxima();
+      e.preventDefault();
+    }
+  });
+
   // Autoplay (pausa ao passar o mouse; desligado se o usuário prefere menos movimento)
   const reduzirMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let timer = null;
@@ -230,6 +388,7 @@ function montarCoverflow() {
   function iniciarAutoplay() {
     pararAutoplay();
     if (reduzirMovimento || itens.length <= 1) return;
+    if (overlay.classList.contains("open")) return;
     timer = setInterval(proximo, 5000);
   }
 

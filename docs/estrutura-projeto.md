@@ -71,7 +71,7 @@ Tudo que depende desses dados é preenchido automaticamente pelo `script.js` ao 
 
 As obras são controladas pelo array `PORTFOLIO` em `assets/js/config.js`.
 
-1. Crie a pasta `assets/images/portfolio/obra-04/` e coloque a foto (ex.: `imagem-01.jpg`).
+1. Crie a pasta `assets/images/portfolio/obra-04/` e coloque as fotos (ex.: `imagem-01.jpg`, `imagem-02.jpg`).
 2. Adicione um novo item no array `PORTFOLIO` (em `config.js`):
 
 ```javascript
@@ -79,14 +79,19 @@ As obras são controladas pelo array `PORTFOLIO` em `assets/js/config.js`.
   tag: "Comercial",                                  // categoria exibida no cartão
   titulo: "Título da Obra",
   descricao: "Descrição curta da obra.",
-  imagem: "assets/images/portfolio/obra-04/imagem-01.jpg",
-  categoria: "Comercial"                             // mensagem usada no WhatsApp
+  imagem: "assets/images/portfolio/obra-04/imagem-01.jpg",  // capa do cartão 3D
+  imagens: [                                          // fotos do lightbox ao clicar
+    "assets/images/portfolio/obra-04/imagem-01.jpg",
+    "assets/images/portfolio/obra-04/imagem-02.jpg"
+  ],
+  categoria: "Comercial"                              // mensagem usada no WhatsApp
 }
 ```
 
-3. O nome da `tag`/`categoria` é utilizado apenas para exibição e mensagem. Se adicionar uma categoria nova, inclua também `mensagemNovaCategoria` no `CONFIG`.
+3. O cartão usa `imagem` como capa. Ao clicar, abre a galeria (lightbox) com as fotos de `imagens` (setas, miniaturas e contador). Sem o campo `imagens`, o lightbox mostra apenas a capa.
+4. O nome da `tag`/`categoria` é utilizado apenas para exibição e mensagem. Se adicionar uma categoria nova, inclua também `mensagemNovaCategoria` no `CONFIG`.
 
-> **Imagens de teste:** hoje o portfólio usa fotos do Unsplash (links externos). Para o site definitivo, troque o campo `imagem` pelo caminho local da foto real (ex.: `assets/images/portfolio/obra-01/imagem-01.jpg`) e, se desejar, remova os arquivos ilustrativos `.svg` de `assets/images/portfolio/`.
+> **Imagens de teste:** hoje o portfólio usa fotos do Unsplash (links externos). Para o site definitivo, troque os campos `imagem`/`imagens` pelos caminhos locais das fotos reais (ex.: `assets/images/portfolio/obra-01/imagem-01.jpg`) e, se desejar, remova os arquivos ilustrativos `.svg` de `assets/images/portfolio/`.
 
 ## 5. Onde alterar serviços
 
@@ -141,10 +146,10 @@ O `script.js` monta as URLs `https://api.whatsapp.com/send?phone=...&text=...` a
 
 Resumo dos passos:
 
-1. Crie `assets/images/portfolio/obra-NN/` e copie a foto da obra (ex.: `imagem-01.jpg`).
+1. Crie `assets/images/portfolio/obra-NN/` e copie as fotos da obra (ex.: `imagem-01.jpg`...).
 2. Adicione um item ao array `PORTFOLIO` em `assets/js/config.js` (consulte a seção 4).
-3. O cartão é renderizado automaticamente na galeria 3D pelo `script.js` (função `montarCoverflow`).
-4. Se a obra tiver outras imagens além da principal, o efeito Coverflow exibe uma por cartão; para várias fotos por obra, crie um cartão por foto ou evolua o formato futuramente.
+3. `imagem` define a capa do cartão 3D; `imagens` define as fotos do lightbox aberto ao clicar no cartão.
+4. Interações: setas/lateral, passar o mouse centraliza o cartão; clique abre a galeria da obra. (Esc, setas do teclado e swipe fecham/navegam a galeria.)
 
 ## 9. CSS — pontos de atenção
 
@@ -160,7 +165,7 @@ Resumo dos passos:
 |---|---|---|
 | `gerarUrlWhatsApp(mensagem)` | `script.js` | Cria a URL do WhatsApp. |
 | `enviarOrcamento(categoria)` | `script.js` | Abre o WhatsApp com mensagem padrão ou por categoria. |
-| `montarCoverflow()` | `script.js` | Renderiza e anima a galeria 3D de obras (autoplay, setas, dots, toque, teclado). |
+| `montarCoverflow()` | `script.js` | Renderiza e anima a galeria 3D de obras (autoplay, setas, dots, toque, teclado) e o lightbox de fotos (`abrirLightbox`/`fecharLightbox`). |
 | `aplicarConfiguracao()` | `script.js` | Preenche título, nome, rodapé, horário e ano. |
 | `inicializarMenuMobile()` | `script.js` | Abre/fecha menu no mobile e trata tecla Esc. |
 
@@ -181,6 +186,7 @@ Ao alterar algo, verifique:
 - [ ] Links de âncora (`#servicos`, `#especialidades`, `#obras`, `#atendimento`) continuam funcionando
 - [ ] Imagens têm `alt`
 - [ ] Galeria 3D (Coverflow) navega pelas obras (setas, dots, toque)
+- [ ] Clique no cartão abre a galeria de fotos da obra; Esc/setas fecham e navegam
 - [ ] Menu mobile abre e fecha (e com a tecla Esc)
 - [ ] Botões de WhatsApp abrem com a mensagem correta
 - [ ] Responsividade em celular (nada ultrapassa a tela)
