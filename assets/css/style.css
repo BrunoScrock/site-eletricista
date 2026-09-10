@@ -274,15 +274,15 @@ header {
 .why-section::after {
   content: "";
   position: absolute;
-  inset: -60% -60% -40% -60%;
+  inset: 0;
   pointer-events: none;
   z-index: 0;
   background-image: repeating-linear-gradient(
     -35deg,
-    rgba(255, 255, 255, 0.035) 0 2px,
-    transparent 2px 130px
+    rgba(255, 255, 255, 0.03) 0 2px,
+    transparent 2px 90px
   );
-  animation: fundoPassar 22s linear infinite;
+  animation: fundoPassar 26s linear infinite;
 }
 
 @keyframes fundoDrift {
@@ -291,8 +291,8 @@ header {
 }
 
 @keyframes fundoPassar {
-  from { transform: translateX(-12%); }
-  to { transform: translateX(12%); }
+  from { transform: translateX(-4%); }
+  to { transform: translateX(4%); }
 }
 
 .hero .container,
@@ -651,6 +651,8 @@ header {
 .why-section {
   background: linear-gradient(135deg, #172554 0%, #1e3a8a 100%);
   padding: 90px 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .why-section .section-title h2 {
