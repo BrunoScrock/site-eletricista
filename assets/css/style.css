@@ -1283,12 +1283,33 @@ body.no-scroll {
   color: var(--white);
   font-size: 1.15rem;
   margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.footer-logo i {
-  color: var(--secondary);
-  width: 24px;
-  height: 24px;
+.footer-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.footer-logo-text strong {
+  color: var(--white);
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.footer-logo-text em {
+  font-style: normal;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #f97316;
+  white-space: nowrap;
 }
 
 .footer-brand p {
