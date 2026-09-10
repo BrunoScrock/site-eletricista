@@ -582,123 +582,248 @@ header {
 }
 
 /* --------------------------------------------------------------------------
-   8. PORTFÓLIO / OBRAS REALIZADAS
+   8. PORTFÓLIO / OBRAS REALIZADAS (GALERIA 3D COVERFLOW)
    -------------------------------------------------------------------------- */
 .portfolio-section {
-  background-color: var(--bg-light);
+  background: linear-gradient(135deg, #0f172a 0%, #172554 100%);
   padding: 90px 0;
 }
 
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
+.portfolio-section .section-title h2 {
+  color: var(--white);
 }
 
-.portfolio-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
+.portfolio-section .section-title p {
+  color: #94a3b8;
 }
 
-.portfolio-img {
+.coverflow {
   position: relative;
   width: 100%;
-  height: 230px;
-  background-color: #cbd5e1;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 20px;
   overflow: hidden;
+  background-color: var(--primary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
 }
 
-.portfolio-img img {
+.coverflow-ambience {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.coverflow-ambience img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.25s ease-in-out;
+  filter: brightness(0.22) blur(32px);
+  transform: scale(1.15);
+  transition: opacity 900ms ease;
 }
 
-.carousel-btn {
+.coverflow-ambience-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.35) 0%, rgba(15, 23, 42, 0.92) 100%);
+}
+
+.coverflow-stage {
+  position: relative;
+  z-index: 10;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+}
+
+.coverflow-card {
+  position: absolute;
+  width: 310px;
+  height: 440px;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: var(--primary);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease, filter 0.8s ease;
+}
+
+.coverflow-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.coverflow-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 25%, rgba(0, 0, 0, 0.68) 60%, rgba(0, 0, 0, 0.96) 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.coverflow-content {
+  position: relative;
+  z-index: 20;
+  height: 100%;
+  padding: 20px 18px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+.coverflow-card.is-center .coverflow-content {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.coverflow-tag {
+  align-self: flex-end;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 4px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
+.coverflow-body {
+  margin-top: auto;
+}
+
+.coverflow-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.95);
+}
+
+.coverflow-desc {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 270px;
+  margin: 6px auto 12px;
+  line-height: 1.4;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+.coverflow-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 20px;
+  border-radius: 9999px;
+  background-color: var(--whatsapp);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.coverflow-cta:hover {
+  background-color: var(--whatsapp-hover);
+  transform: translateY(-2px);
+}
+
+.coverflow-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--primary);
-  border: none;
-  width: 36px;
-  height: 36px;
+  z-index: 40;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s, background 0.2s;
-  z-index: 10;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.carousel-btn:hover {
-  background: var(--white);
-  transform: translateY(-50%) scale(1.1);
+.coverflow-arrow:hover {
+  background-color: rgba(15, 23, 42, 0.85);
+  transform: translateY(-50%) scale(1.06);
 }
 
-.carousel-btn i {
-  width: 20px;
-  height: 20px;
+.coverflow-arrow i {
+  width: 22px;
+  height: 22px;
 }
 
-.carousel-btn.prev {
-  left: 10px;
+.coverflow-arrow.prev {
+  left: 18px;
 }
 
-.carousel-btn.next {
-  right: 10px;
+.coverflow-arrow.next {
+  right: 18px;
 }
 
-.image-counter {
-  position: absolute;
-  bottom: 10px;
-  right: 12px;
-  background: rgba(15, 23, 42, 0.75);
-  color: var(--white);
-  font-size: 0.75rem;
-  padding: 3px 8px;
-  border-radius: 12px;
-  backdrop-filter: blur(4px);
-  pointer-events: none;
+.coverflow-dots {
+  position: relative;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 0 28px;
 }
 
-.portfolio-info {
-  padding: 20px;
-  flex-grow: 1;
+.coverflow-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.portfolio-category {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--secondary-hover);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.coverflow-dot:hover {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
-.portfolio-info h3 {
-  font-size: 1.1rem;
-  color: var(--primary);
-  margin: 6px 0 8px;
-}
-
-.portfolio-info p {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-.portfolio-note {
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.92rem;
-  margin-top: 40px;
+.coverflow-dot.active {
+  width: 28px;
+  background-color: var(--secondary);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.7);
 }
 
 /* --------------------------------------------------------------------------
@@ -1063,9 +1188,35 @@ header {
 
   .pillars-grid,
   .services-list-grid,
-  .portfolio-grid,
   .why-grid {
     grid-template-columns: 1fr;
+  }
+
+  .coverflow-stage {
+    height: 420px;
+  }
+
+  .coverflow-card {
+    width: 68vw;
+    max-width: 300px;
+    height: 360px;
+  }
+
+  .coverflow-title {
+    font-size: 1rem;
+  }
+
+  .coverflow-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .coverflow-arrow.prev {
+    left: 8px;
+  }
+
+  .coverflow-arrow.next {
+    right: 8px;
   }
 
   .whatsapp-float {
@@ -1096,6 +1247,24 @@ header {
   .badge {
     font-size: 0.78rem;
     padding: 6px 10px;
+  }
+
+  .coverflow-card {
+    width: 78vw;
+    max-width: 260px;
+  }
+
+  .coverflow-desc {
+    font-size: 0.78rem;
+  }
+
+  .coverflow-cta {
+    font-size: 0.8rem;
+    padding: 8px 14px;
+  }
+
+  .coverflow-arrow {
+    display: none;
   }
 }
 

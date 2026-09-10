@@ -10,7 +10,7 @@ Divulgar os serviços prestados, transmitir profissionalismo, apresentar obras r
 
 - **HTML5** — estrutura semântica
 - **CSS3** — estilos, layout e responsividade
-- **JavaScript puro (Vanilla JS)** — interações (menu mobile, carrossel, WhatsApp)
+- **JavaScript puro (Vanilla JS)** — interações (menu mobile, galeria 3D de obras, WhatsApp)
 - **Lucide Icons** — ícones via CDN
 - **Fonte Inter** — via Google Fonts
 
@@ -30,7 +30,7 @@ site-eletricista/
 │   │   └── style.css       → Todos os estilos e responsividade
 │   ├── js/
 │   │   ├── config.js       → Dados da empresa (WhatsApp, nome, cidade)
-│   │   └── script.js       → Funcionalidades (menu, carrossel, WhatsApp)
+│   │   └── script.js       → Funcionalidades (menu, galeria 3D, WhatsApp)
 │   ├── images/
 │   │   ├── logo/           → Logo da empresa
 │   │   ├── hero/           → Imagem/banner do topo
@@ -48,7 +48,7 @@ Você só precisa de um navegador. Duas opções:
 
 **Opção 1 — clicando no arquivo**
 
-Abra o `index.html` diretamente (dê dois cliques). Funciona, mas o menu e o carrossel são acessíveis pela barra de endereço apenas via `file://`.
+Abra o `index.html` diretamente (dê dois cliques). Funciona, mas o menu e a galeria 3D são testados apenas via servidor local.
 
 **Opção 2 — servidor local (recomendado)**
 
@@ -67,7 +67,7 @@ Com Node.js instalado (via npx):
 npx serve .
 ```
 
-> Recomendo o servidor local para testar o carrossel, o menu mobile e os links de WhatsApp com o comportamento real.
+> Recomendo o servidor local para testar a galeria 3D, o menu mobile e os links de WhatsApp com o comportamento real.
 
 ## 5. Como alterar o telefone (WhatsApp)
 
@@ -96,28 +96,37 @@ const CONFIG = {
 
 O título da página, o cabeçalho e o rodapé se atualizam automaticamente.
 
-## 7. Como adicionar novas imagens
+## 7. Como adicionar novas imagens de obras
 
-Coloque as fotos em `assets/images/portfolio/obra-NN/` seguindo o padrão:
+As obras da galeria 3D são controladas pelo array `PORTFOLIO` em `assets/js/config.js`. Cada item representa um cartão:
+
+```javascript
+{
+  tag: "Comercial",
+  titulo: "Título da Obra",
+  descricao: "Descrição curta.",
+  imagem: "assets/images/portfolio/obra-04/imagem-01.jpg",
+  categoria: "Comercial"
+}
+```
+
+Coloque as fotos em `assets/images/portfolio/obra-NN/`:
 
 ```text
 assets/images/portfolio/
 │
 ├── obra-01/
-│   ├── imagem-01.jpg
-│   ├── imagem-02.jpg
-│   └── imagem-03.jpg
+│   └── imagem-01.jpg
 │
 └── obra-02/
-    ├── imagem-01.jpg
-    └── imagem-02.jpg
+    └── imagem-01.jpg
 ```
 
 Recomendações:
 
 - Use imagens JPG ou WebP comprimidas (máximo ~200–400 KB cada).
-- Mantenha a proporção aproximada 16:10 para boa exibição.
-- As obras de exemplo usam placeholders `.svg`. Ao adicionar fotos reais, atualize a extensão nas referências do `index.html` (`data-images` e `src`) para a extensão real do arquivo (ex.: `.jpg`).
+- Mantenha a proporção aproximada 3:4 (cartão vertical da galeria) para boa exibição.
+- Hoje o portfólio usa fotos de teste do Unsplash (links externos). Para o site definitivo, troque o campo `imagem` pelo caminho local da foto real e remova os `.svg` ilustrativos de `assets/images/portfolio/`.
 
 ## 8. Como adicionar novos serviços
 

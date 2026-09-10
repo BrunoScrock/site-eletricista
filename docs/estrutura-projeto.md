@@ -35,7 +35,7 @@ site-eletricista/
 | `index.html` | Estrutura/semântica de toda a página (cabeçalho, seções, rodapé). |
 | `assets/css/style.css` | Aparência, cores, espaçamentos, animações e responsividade. |
 | `assets/js/config.js` | ***Único lugar*** para nome, WhatsApp, cidade e mensagens. |
-| `assets/js/script.js` | Menu mobile, carrossel do portfólio, links de WhatsApp e preenchimento de textos. |
+| `assets/js/script.js` | Menu mobile, galeria 3D de obras, links de WhatsApp e preenchimento de textos. |
 | `assets/images/*` | Imagens locais do site. |
 
 ## 3. Onde alterar informações da empresa
@@ -69,39 +69,24 @@ Tudo que depende desses dados é preenchido automaticamente pelo `script.js` ao 
 
 ### Como adicionar uma nova obra e suas fotos
 
-1. Crie a pasta `assets/images/portfolio/obra-04/`.
-2. Coloque as fotos com nomes sequenciais: `imagem-01.jpg`, `imagem-02.jpg`, etc.
-3. Copie no `index.html` um bloco completo de carta:
+As obras são controladas pelo array `PORTFOLIO` em `assets/js/config.js`.
 
-```html
-<article class="portfolio-card">
-  <div class="portfolio-img" data-images='[
-    "assets/images/portfolio/obra-04/imagem-01.jpg",
-    "assets/images/portfolio/obra-04/imagem-02.jpg"
-  ]' data-index="0">
-    <button class="carousel-btn prev" onclick="navigateCard(this, -1)" aria-label="Foto anterior">
-      <i data-lucide="chevron-left" aria-hidden="true"></i>
-    </button>
-    <img src="assets/images/portfolio/obra-04/imagem-01.jpg" alt="Descrição da imagem" loading="lazy">
-    <button class="carousel-btn next" onclick="navigateCard(this, 1)" aria-label="Próxima foto">
-      <i data-lucide="chevron-right" aria-hidden="true"></i>
-    </button>
-    <span class="image-counter">1/2</span>
-  </div>
-  <div class="portfolio-info">
-    <span class="portfolio-category">Industrial</span>
-    <h3>Título da Obra</h3>
-    <p>Descrição da obra</p>
-  </div>
-</article>
+1. Crie a pasta `assets/images/portfolio/obra-04/` e coloque a foto (ex.: `imagem-01.jpg`).
+2. Adicione um novo item no array `PORTFOLIO` (em `config.js`):
+
+```javascript
+{
+  tag: "Comercial",                                  // categoria exibida no cartão
+  titulo: "Título da Obra",
+  descricao: "Descrição curta da obra.",
+  imagem: "assets/images/portfolio/obra-04/imagem-01.jpg",
+  categoria: "Comercial"                             // mensagem usada no WhatsApp
+}
 ```
 
-4. Atualize o `alt` de cada imagem (`alt` descreve a foto para acessibilidade/SEO).
-5. O contador `1/2` refere-se à quantidade de imagens da obra.
+3. O nome da `tag`/`categoria` é utilizado apenas para exibição e mensagem. Se adicionar uma categoria nova, inclua também `mensagemNovaCategoria` no `CONFIG`.
 
-> O atributo `data-images` lista as fotos do carrossel. O `data-index` inicia em `0`.
-
-> **Importante:** as obras de exemplo (`obra-01`, `obra-02`, `obra-03`) usam placeholders `.svg`. Ao colocar fotos reais, use a extensão correta do arquivo (`imagem-01.jpg`, `imagem-01.png` etc.) e **atualize as referências** em `data-images` e `src` para a mesma extensão. Por exemplo, se a foto for `imagem-01.jpg`, a referência deve ser `assets/images/portfolio/obra-04/imagem-01.jpg`.
+> **Imagens de teste:** hoje o portfólio usa fotos do Unsplash (links externos). Para o site definitivo, troque o campo `imagem` pelo caminho local da foto real (ex.: `assets/images/portfolio/obra-01/imagem-01.jpg`) e, se desejar, remova os arquivos ilustrativos `.svg` de `assets/images/portfolio/`.
 
 ## 5. Onde alterar serviços
 
@@ -156,10 +141,10 @@ O `script.js` monta as URLs `https://api.whatsapp.com/send?phone=...&text=...` a
 
 Resumo dos passos:
 
-1. Crie `assets/images/portfolio/obra-NN/` e copie as fotos (`imagem-01.jpg`...).
-2. Copie o bloco `<article class="portfolio-card">` no `index.html` (seção `#obras`).
-3. Ajuste `data-images`, `alt`, categoria, título, descrição e contador.
-4. Se a obra tiver apenas 1 imagem, deixe apenas a imagem — o `script.js` esconde setas e contador automaticamente.
+1. Crie `assets/images/portfolio/obra-NN/` e copie a foto da obra (ex.: `imagem-01.jpg`).
+2. Adicione um item ao array `PORTFOLIO` em `assets/js/config.js` (consulte a seção 4).
+3. O cartão é renderizado automaticamente na galeria 3D pelo `script.js` (função `montarCoverflow`).
+4. Se a obra tiver outras imagens além da principal, o efeito Coverflow exibe uma por cartão; para várias fotos por obra, crie um cartão por foto ou evolua o formato futuramente.
 
 ## 9. CSS — pontos de atenção
 
@@ -175,7 +160,7 @@ Resumo dos passos:
 |---|---|---|
 | `gerarUrlWhatsApp(mensagem)` | `script.js` | Cria a URL do WhatsApp. |
 | `enviarOrcamento(categoria)` | `script.js` | Abre o WhatsApp com mensagem padrão ou por categoria. |
-| `navigateCard(botao, direcao)` | `script.js` | Passa as imagens do carrossel. |
+| `montarCoverflow()` | `script.js` | Renderiza e anima a galeria 3D de obras (autoplay, setas, dots, toque, teclado). |
 | `aplicarConfiguracao()` | `script.js` | Preenche título, nome, rodapé, horário e ano. |
 | `inicializarMenuMobile()` | `script.js` | Abre/fecha menu no mobile e trata tecla Esc. |
 
@@ -195,7 +180,7 @@ Ao alterar algo, verifique:
 
 - [ ] Links de âncora (`#servicos`, `#especialidades`, `#obras`, `#atendimento`) continuam funcionando
 - [ ] Imagens têm `alt`
-- [ ] Carrossel do portfólio inicia em `1/N` e navega corretamente
+- [ ] Galeria 3D (Coverflow) navega pelas obras (setas, dots, toque)
 - [ ] Menu mobile abre e fecha (e com a tecla Esc)
 - [ ] Botões de WhatsApp abrem com a mensagem correta
 - [ ] Responsividade em celular (nada ultrapassa a tela)

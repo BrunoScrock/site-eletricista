@@ -262,64 +262,23 @@
           <p>Confira o padrão de qualidade e organização das nossas entregas</p>
         </div>
 
-        <div class="portfolio-grid">
+        <div class="coverflow" id="coverflow">
+          <div class="coverflow-ambience" aria-hidden="true">
+            <img id="coverflow-bg" src="" alt="">
+            <div class="coverflow-ambience-overlay"></div>
+          </div>
 
-          <article class="portfolio-card">
-            <div class="portfolio-img" data-images='["assets/images/portfolio/obra-01/imagem-01.svg","assets/images/portfolio/obra-01/imagem-02.svg","assets/images/portfolio/obra-01/imagem-03.svg"]' data-index="0">
-              <button class="carousel-btn prev" onclick="navigateCard(this, -1)" aria-label="Foto anterior">
-                <i data-lucide="chevron-left" aria-hidden="true"></i>
-              </button>
-              <img src="assets/images/portfolio/obra-01/imagem-01.svg" alt="Montagem de Quadro de Comando" loading="lazy">
-              <button class="carousel-btn next" onclick="navigateCard(this, 1)" aria-label="Próxima foto">
-                <i data-lucide="chevron-right" aria-hidden="true"></i>
-              </button>
-              <span class="image-counter">1/3</span>
-            </div>
-            <div class="portfolio-info">
-              <span class="portfolio-category">Industrial</span>
-              <h3>Montagem de Quadro de Comando</h3>
-              <p>Quadro de comando montado com organização, identificação e segurança.</p>
-            </div>
-          </article>
+          <div class="coverflow-stage" id="coverflow-stage" aria-label="Galeria de obras realizadas"></div>
 
-          <article class="portfolio-card">
-            <div class="portfolio-img" data-images='["assets/images/portfolio/obra-02/imagem-01.svg","assets/images/portfolio/obra-02/imagem-02.svg"]' data-index="0">
-              <button class="carousel-btn prev" onclick="navigateCard(this, -1)" aria-label="Foto anterior">
-                <i data-lucide="chevron-left" aria-hidden="true"></i>
-              </button>
-              <img src="assets/images/portfolio/obra-02/imagem-01.svg" alt="Readequação de Centro de Medição" loading="lazy">
-              <button class="carousel-btn next" onclick="navigateCard(this, 1)" aria-label="Próxima foto">
-                <i data-lucide="chevron-right" aria-hidden="true"></i>
-              </button>
-              <span class="image-counter">1/2</span>
-            </div>
-            <div class="portfolio-info">
-              <span class="portfolio-category">Predial</span>
-              <h3>Readequação de Centro de Medição</h3>
-              <p>Readequação do centro de medição para atender às novas cargas do edifício.</p>
-            </div>
-          </article>
+          <button class="coverflow-arrow prev" id="coverflow-prev" aria-label="Obra anterior">
+            <i data-lucide="chevron-left" aria-hidden="true"></i>
+          </button>
+          <button class="coverflow-arrow next" id="coverflow-next" aria-label="Próxima obra">
+            <i data-lucide="chevron-right" aria-hidden="true"></i>
+          </button>
 
-          <article class="portfolio-card">
-            <div class="portfolio-img" data-images='["assets/images/portfolio/obra-03/imagem-01.svg","assets/images/portfolio/obra-03/imagem-02.svg"]' data-index="0">
-              <button class="carousel-btn prev" onclick="navigateCard(this, -1)" aria-label="Foto anterior">
-                <i data-lucide="chevron-left" aria-hidden="true"></i>
-              </button>
-              <img src="assets/images/portfolio/obra-03/imagem-01.svg" alt="Instalação de Projeto Luminotécnico" loading="lazy">
-              <button class="carousel-btn next" onclick="navigateCard(this, 1)" aria-label="Próxima foto">
-                <i data-lucide="chevron-right" aria-hidden="true"></i>
-              </button>
-              <span class="image-counter">1/2</span>
-            </div>
-            <div class="portfolio-info">
-              <span class="portfolio-category">Residencial</span>
-              <h3>Instalação de Projeto Luminotécnico</h3>
-              <p>Instalação de iluminação integrada e eficiente para o ambiente.</p>
-            </div>
-          </article>
-
+          <div class="coverflow-dots" id="coverflow-dots" role="tablist" aria-label="Navegar entre as obras"></div>
         </div>
-        <p class="portfolio-note">Em breve, mais obras serão adicionadas ao portfólio.</p>
       </div>
     </section>
 

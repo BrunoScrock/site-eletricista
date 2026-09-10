@@ -26,3 +26,41 @@ const CONFIG = {
   mensagemComercial: "Olá! Gostaria de solicitar um orçamento para um serviço elétrico comercial.",
   mensagemIndustrial: "Olá! Gostaria de solicitar um orçamento para um serviço elétrico industrial."
 };
+
+/* ==========================================================================
+   PORTFÓLIO — OBRAS REALIZADAS (galeria 3D)
+   --------------------------------------------------------------------------
+   Para adicionar/alterar uma obra, edite um item abaixo:
+   - tag: categoria exibida no cartão
+   - titulo: nome da obra
+   - descricao: resumo curto
+   - imagem: caminho local (ex.: "assets/images/portfolio/obra-04/imagem-01.jpg")
+     ou URL de imagem externa
+   - categoria: palavra-chave usada na mensagem do WhatsApp
+   ========================================================================== */
+
+const PORTFOLIO = [
+  // IMAGENS DE TESTE (Unsplash). Substitua pelo caminho das fotos reais,
+  // ex.: "assets/images/portfolio/obra-01/imagem-01.jpg"
+  {
+    tag: "Industrial",
+    titulo: "Montagem de Quadro de Comando",
+    descricao: "Quadro de comando montado com organização, identificação e segurança.",
+    imagem: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1000&q=70",
+    categoria: "Industrial"
+  },
+  {
+    tag: "Predial",
+    titulo: "Readequação de Centro de Medição",
+    descricao: "Readequação do centro de medição para atender às novas cargas do edifício.",
+    imagem: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=70",
+    categoria: "Predial"
+  },
+  {
+    tag: "Residencial",
+    titulo: "Instalação de Projeto Luminotécnico",
+    descricao: "Instalação de iluminação integrada e eficiente para o ambiente.",
+    imagem: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=1000&q=70",
+    categoria: "Residencial"
+  }
+];

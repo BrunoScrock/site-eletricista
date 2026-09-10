@@ -27,32 +27,223 @@ function enviarOrcamento(categoria) {
 }
 
 /* --------------------------------------------------------------------------
-   CARROSSEL DO PORTFÓLIO
+   GALERIA 3D (COVERFLOW) — OBRAS REALIZADAS
    -------------------------------------------------------------------------- */
 
-// Navega entre as imagens de um card de portfólio
-function navigateCard(botao, direcao) {
-  const container = botao.closest(".portfolio-img");
-  const img = container.querySelector("img");
-  const contador = container.querySelector(".image-counter");
+function montarCoverflow() {
+  const stage = document.getElementById("coverflow-stage");
+  if (!stage) return;
 
-  const imagens = JSON.parse(container.dataset.images);
-  let indice = parseInt(container.dataset.index || "0", 10);
+  const ambBg = document.getElementById("coverflow-bg");
+  const dotsContainer = document.getElementById("coverflow-dots");
+  const btnPrev = document.getElementById("coverflow-prev");
+  const btnNext = document.getElementById("coverflow-next");
 
-  if (imagens.length <= 1) return;
+  const itens = PORTFOLIO || [];
+  if (!itens.length) return;
 
-  indice = (indice + direcao + imagens.length) % imagens.length;
-  container.dataset.index = indice;
+  let indice = 0;
+  let touchX = 0;
 
-  img.style.opacity = "0.3";
-  setTimeout(() => {
-    img.src = imagens[indice];
-    img.style.opacity = "1";
-  }, 120);
+  // Cria os cartões
+  itens.forEach((item, i) => {
+    const card = document.createElement("div");
+    card.className = "coverflow-card";
+    card.dataset.index = i;
+    card.setAttribute("role", "tabpanel");
 
-  if (contador) {
-    contador.textContent = `${indice + 1}/${imagens.length}`;
+    const img = document.createElement("img");
+    img.src = item.imagem;
+    img.alt = item.titulo;
+    img.loading = "lazy";
+    img.draggable = false;
+    card.appendChild(img);
+
+    const vignette = document.createElement("div");
+    vignette.className = "coverflow-vignette";
+    card.appendChild(vignette);
+
+    const content = document.createElement("div");
+    content.className = "coverflow-content";
+    content.innerHTML =
+      '<span class="coverflow-tag">' +
+      item.tag +
+      "</span>" +
+      '<div class="coverflow-body">' +
+      '<h3 class="coverflow-title">' +
+      item.titulo +
+      "</h3>" +
+      (item.descricao ? '<p class="coverflow-desc">' + item.descricao + "</p>" : "") +
+      '<button class="coverflow-cta" data-categoria="' +
+      (item.categoria || "") +
+      '">Solicitar Orçamento</button>' +
+      "</div>";
+    card.appendChild(content);
+
+    card.addEventListener("click", () => {
+      if (indiceAtual(i) !== 0) irPara(i);
+    });
+
+    content.querySelector(".coverflow-cta").addEventListener("click", (e) => {
+      e.stopPropagation();
+      enviarOrcamento(e.currentTarget.dataset.categoria);
+    });
+
+    stage.appendChild(card);
+  });
+
+  const cards = Array.from(stage.children);
+
+  // Dots de paginação
+  itens.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.className = "coverflow-dot";
+    dot.setAttribute("role", "tab");
+    dot.setAttribute("aria-label", "Ir para obra " + (i + 1));
+    dot.addEventListener("click", () => irPara(i));
+    dotsContainer.appendChild(dot);
+  });
+  const dots = Array.from(dotsContainer.children);
+
+  function indiceAtual(i) {
+    let d = (i - indice + itens.length) % itens.length;
+    if (d > itens.length / 2) d -= itens.length;
+    return d;
   }
+
+  function atualizar() {
+    const cardW = cards[0].offsetWidth || 310;
+    const deslocamento = (fator, sinal) => Math.round(fator * cardW) * sinal;
+
+    cards.forEach((card, i) => {
+      const d = indiceAtual(i);
+      const sinal = d < 0 ? -1 : 1;
+      const abs = Math.abs(d);
+      let transformo = "";
+      let opacidade = 0;
+      let z = 1;
+      let filtro = "brightness(0.4) blur(2px)";
+      let centro = false;
+
+      if (d === 0) {
+        transformo = "translateX(0px) scale(1) rotateY(0deg)";
+        opacidade = 1;
+        z = 30;
+        filtro = "brightness(1)";
+        centro = true;
+      } else if (abs === 1) {
+        transformo =
+          "translateX(" + deslocamento(0.62, sinal) + "px) scale(0.84) rotateY(" + -24 * sinal + "deg)";
+        opacidade = 0.6;
+        z = 20;
+        filtro = "brightness(0.75)";
+      } else if (abs === 2) {
+        transformo =
+          "translateX(" + deslocamento(1.05, sinal) + "px) scale(0.68) rotateY(" + -38 * sinal + "deg)";
+        opacidade = 0.35;
+        z = 10;
+        filtro = "brightness(0.55) blur(1px)";
+      } else {
+        transformo =
+          "translateX(" + deslocamento(1.35, sinal) + "px) scale(0.55) rotateY(" + -45 * sinal + "deg)";
+        opacidade = 0;
+      }
+
+      card.style.transform = transformo;
+      card.style.opacity = opacidade;
+      card.style.zIndex = z;
+      card.style.filter = filtro;
+      card.setAttribute("aria-hidden", centro ? "false" : "true");
+      card.classList.toggle("is-center", centro);
+    });
+
+    if (ambBg) ambBg.src = itens[indice].imagem;
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === indice);
+      dot.setAttribute("aria-selected", i === indice ? "true" : "false");
+    });
+  }
+
+  function proximo() {
+    indice = (indice + 1) % itens.length;
+    atualizar();
+  }
+
+  function anterior() {
+    indice = (indice - 1 + itens.length) % itens.length;
+    atualizar();
+  }
+
+  function irPara(i) {
+    indice = (i + itens.length) % itens.length;
+    atualizar();
+  }
+
+  btnPrev.addEventListener("click", anterior);
+  btnNext.addEventListener("click", proximo);
+
+  // Navegação por teclado (setas) quando o foco está na galeria
+  stage.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      anterior();
+      e.preventDefault();
+    }
+    if (e.key === "ArrowRight") {
+      proximo();
+      e.preventDefault();
+    }
+  });
+
+  // Gestos de toque (swipe)
+  stage.addEventListener(
+    "touchstart",
+    (e) => {
+      touchX = e.touches[0].clientX;
+    },
+    { passive: true }
+  );
+
+  stage.addEventListener(
+    "touchend",
+    (e) => {
+      const diff = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(diff) > 45) {
+        if (diff < 0) proximo();
+        else anterior();
+      }
+    },
+    { passive: true }
+  );
+
+  // Autoplay (pausa ao passar o mouse; desligado se o usuário prefere menos movimento)
+  const reduzirMovimento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let timer = null;
+
+  function pararAutoplay() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function iniciarAutoplay() {
+    pararAutoplay();
+    if (reduzirMovimento || itens.length <= 1) return;
+    timer = setInterval(proximo, 5000);
+  }
+
+  const cover = document.getElementById("coverflow");
+  if (cover) {
+    cover.addEventListener("mouseenter", pararAutoplay);
+    cover.addEventListener("mouseleave", iniciarAutoplay);
+    cover.addEventListener("focusin", pararAutoplay);
+    cover.addEventListener("focusout", iniciarAutoplay);
+  }
+
+  atualizar();
+  iniciarAutoplay();
+  if (window.lucide) window.lucide.createIcons();
 }
 
 /* --------------------------------------------------------------------------
@@ -146,9 +337,9 @@ function iniciarReveal() {
     ".pillars-grid > *",
     ".why-grid > *",
     ".services-list-grid > *",
-    ".portfolio-grid > *",
     ".section-title",
     ".coverage-box",
+    ".coverflow",
     ".final-cta > .container > *"
   ];
 
@@ -184,15 +375,7 @@ function iniciarReveal() {
 document.addEventListener("DOMContentLoaded", () => {
   aplicarConfiguracao();
 
-  // Oculta setas/contador quando o card possui apenas 1 imagem
-  document.querySelectorAll(".portfolio-img").forEach((container) => {
-    const imagens = JSON.parse(container.dataset.images || "[]");
-    if (imagens.length <= 1) {
-      container.querySelectorAll(".carousel-btn, .image-counter").forEach((el) => {
-        el.style.display = "none";
-      });
-    }
-  });
+  montarCoverflow();
 
   iniciarReveal();
 
