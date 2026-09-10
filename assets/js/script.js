@@ -557,6 +557,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   inicializarMenuMobile();
 
+  // Clique na logo rola suavemente ao topo da página
+  const logo = document.querySelector(".logo");
+  if (logo) {
+    logo.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
   // Converte os ícones Lucide (se a biblioteca estiver carregada)
   if (window.lucide) window.lucide.createIcons();
 });
