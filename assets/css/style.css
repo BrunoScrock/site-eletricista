@@ -385,6 +385,16 @@ header {
   gap: 25px;
 }
 
+/* Flutuação sutil para cima no hover dos cards */
+@keyframes cardFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
 .pillar-card {
   background: var(--white);
   border: 1px solid var(--border);
@@ -398,9 +408,9 @@ header {
 }
 
 .pillar-card:hover {
-  transform: translateY(-6px);
   border-top-color: #1e3a8a;
   box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.25);
+  animation: cardFloat 2s ease-in-out infinite;
 }
 
 .pillar-icon {
@@ -510,12 +520,13 @@ header {
 .service-item:hover {
   background: #dbeafe;
   border-color: #1e3a8a;
-  transform: translateY(-3px);
   box-shadow: 0 10px 18px -8px rgba(15, 23, 42, 0.25);
+  animation: cardFloat 2s ease-in-out infinite;
 }
 
-.service-item i {
-  color: var(--whatsapp);
+.service-item i,
+.service-item svg {
+  color: #1e3a8a;
   flex-shrink: 0;
   margin-top: 3px;
   width: 20px;
@@ -560,10 +571,10 @@ header {
 }
 
 .why-card:hover {
-  transform: translateY(-7px);
-  border-top-color: #1e3a8a;
+  border-top-color: #ffffff;
   background: rgba(255, 255, 255, 0.06);
   box-shadow: 0 18px 35px -10px rgba(0, 0, 0, 0.55);
+  animation: cardFloat 2s ease-in-out infinite;
 }
 
 .why-icon {
