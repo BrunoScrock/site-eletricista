@@ -44,6 +44,7 @@ function montarCoverflow() {
 
   let indice = 0;
   let touchX = 0;
+  let hoverLock = false;
 
   // Cria os cartões
   itens.forEach((item, i) => {
@@ -85,8 +86,17 @@ function montarCoverflow() {
       abrirLightbox(i);
     });
 
+    // Centraliza ao passar o mouse, com trava para evitar o vaivém
+    // (o cartão que "entra" sob o cursor durante a animação é ignorado)
     card.addEventListener("mouseenter", () => {
-      if (indiceAtual(i) !== 0) irPara(i);
+      if (hoverLock) return;
+      if (indiceAtual(i) !== 0) {
+        hoverLock = true;
+        setTimeout(() => {
+          hoverLock = false;
+        }, 850);
+        irPara(i);
+      }
     });
 
     content.querySelector(".coverflow-cta").addEventListener("click", (e) => {
@@ -131,10 +141,11 @@ function montarCoverflow() {
       let centro = false;
 
       if (d === 0) {
-        transformo = "translateX(0px) scale(1) rotateY(0deg)";
+        // Sem transform/filtro no cartão parado: garante texto nítido no mobile
+        transformo = "none";
         opacidade = 1;
         z = 30;
-        filtro = "brightness(1)";
+        filtro = "none";
         centro = true;
       } else if (abs === 1) {
         transformo =

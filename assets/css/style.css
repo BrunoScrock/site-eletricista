@@ -708,6 +708,8 @@ header {
   cursor: pointer;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
   transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease, filter 0.8s ease;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .coverflow-card img {
@@ -1471,6 +1473,11 @@ body.no-scroll {
 
   .coverflow-title {
     font-size: 1rem;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
+  }
+
+  .coverflow-desc {
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
   }
 
   .coverflow-arrow {
