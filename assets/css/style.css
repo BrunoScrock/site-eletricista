@@ -398,9 +398,9 @@ header {
 }
 
 .pillar-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px) scale(1.02);
   border-top-color: #1e3a8a;
-  box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 24px 45px -12px rgba(30, 58, 138, 0.35);
 }
 
 .pillar-icon {
@@ -508,10 +508,10 @@ header {
 }
 
 .service-item:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px) scale(1.02);
   background: #dbeafe;
   border-color: #1e3a8a;
-  box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 14px 24px -10px rgba(30, 58, 138, 0.35);
 }
 
 .service-item i,
@@ -561,10 +561,10 @@ header {
 }
 
 .why-card:hover {
-  transform: translateY(-6px);
-  border-top-color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
-  box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px) scale(1.02);
+  border-top-color: #f97316;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 24px 45px -12px rgba(249, 115, 22, 0.28);
 }
 
 .why-icon {
