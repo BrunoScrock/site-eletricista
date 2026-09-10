@@ -255,7 +255,7 @@ header {
   overflow: hidden;
 }
 
-/* Fundo animado: brilhos que derivam suavemente + linhas de luz passando */
+/* Fundo animado: partículas de energia subindo lentamente */
 .hero::before,
 .why-section::before {
   content: "";
@@ -264,10 +264,17 @@ header {
   pointer-events: none;
   z-index: 0;
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.30), transparent 45%),
-    radial-gradient(circle at 80% 75%, rgba(245, 158, 11, 0.16), transparent 40%),
-    radial-gradient(circle at 60% 110%, rgba(96, 165, 250, 0.28), transparent 55%);
-  animation: fundoDrift 16s ease-in-out infinite alternate;
+    radial-gradient(circle at 24px 18px, rgba(191, 219, 254, 0.5), transparent 3px),
+    radial-gradient(circle at 88px 74px, rgba(147, 197, 253, 0.35), transparent 4px),
+    radial-gradient(circle at 156px 44px, rgba(219, 234, 254, 0.45), transparent 3px),
+    radial-gradient(circle at 42px 128px, rgba(147, 197, 253, 0.3), transparent 3px),
+    radial-gradient(circle at 120px 152px, rgba(219, 234, 254, 0.4), transparent 4px),
+    radial-gradient(circle at 184px 108px, rgba(147, 197, 253, 0.35), transparent 3px);
+  background-size: 200px 200px;
+  opacity: 0.7;
+  animation: particulasSubir 36s linear infinite;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
 }
 
 .hero::after,
@@ -277,22 +284,20 @@ header {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background-image: repeating-linear-gradient(
-    -35deg,
-    rgba(255, 255, 255, 0.03) 0 2px,
-    transparent 2px 90px
-  );
-  animation: fundoPassar 26s linear infinite;
+  background-image:
+    radial-gradient(circle at 60px 96px, rgba(191, 219, 254, 0.3), transparent 5px),
+    radial-gradient(circle at 140px 32px, rgba(147, 197, 253, 0.22), transparent 6px),
+    radial-gradient(circle at 100px 150px, rgba(219, 234, 254, 0.25), transparent 5px);
+  background-size: 200px 200px;
+  opacity: 0.6;
+  animation: particulasSubir 24s linear infinite;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%);
 }
 
-@keyframes fundoDrift {
-  0% { transform: translate3d(-1.5%, -1%, 0) scale(1); }
-  100% { transform: translate3d(1.5%, 1.5%, 0) scale(1.06); }
-}
-
-@keyframes fundoPassar {
-  from { transform: translateX(-4%); }
-  to { transform: translateX(4%); }
+@keyframes particulasSubir {
+  from { background-position: 0 200px; }
+  to { background-position: 0 0; }
 }
 
 .hero .container,
