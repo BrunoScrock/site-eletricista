@@ -7,7 +7,7 @@
 const CONFIG = {
   // Nome e atividade da empresa
   empresa: "C&M Automação e Elétrica",
-  logoNome: "C&M ELETRICA",
+  logoNome: "Charles M",
 
   // Telefone WhatsApp no formato internacional: 55 + DDD + número (somente dígitos)
   whatsapp: "554190000000",
