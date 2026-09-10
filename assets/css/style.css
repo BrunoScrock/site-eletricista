@@ -388,6 +388,7 @@ header {
 .pillar-card {
   background: var(--white);
   border: 1px solid var(--border);
+  border-top: 4px solid transparent;
   border-radius: var(--radius);
   padding: 28px;
   box-shadow: var(--shadow);
@@ -397,9 +398,9 @@ header {
 }
 
 .pillar-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
-  border-color: #1e3a8a;
+  transform: translateY(-6px);
+  border-top-color: #1e3a8a;
+  box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.25);
 }
 
 .pillar-icon {
@@ -551,6 +552,7 @@ header {
 .why-card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 4px solid transparent;
   border-radius: var(--radius);
   padding: 28px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
@@ -559,7 +561,7 @@ header {
 
 .why-card:hover {
   transform: translateY(-7px);
-  border-color: var(--secondary);
+  border-top-color: #1e3a8a;
   background: rgba(255, 255, 255, 0.06);
   box-shadow: 0 18px 35px -10px rgba(0, 0, 0, 0.55);
 }
