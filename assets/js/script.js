@@ -529,6 +529,12 @@ function iniciarReveal() {
         if (entrada.isIntersecting) {
           entrada.target.classList.add("visible");
           observador.unobserve(entrada.target);
+          // Após o fim da entrada escalonada, zera o atraso para não
+          // prejudicar os hovers (instantâneo).
+          const atraso = parseFloat(entrada.target.style.transitionDelay || 0);
+          setTimeout(() => {
+            entrada.target.style.transitionDelay = "0s";
+          }, atraso * 1000 + 750);
         }
       });
     },
