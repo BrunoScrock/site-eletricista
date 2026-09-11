@@ -557,6 +557,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   inicializarMenuMobile();
 
+  // Encolhe o cabeçalho e reforça a sombra ao rolar
+  const header = document.getElementById("topo");
+  if (header) {
+    const aoRolar = () => {
+      header.classList.toggle("scrolled", window.scrollY > 40);
+    };
+    aoRolar();
+    window.addEventListener("scroll", aoRolar, { passive: true });
+  }
+
   // Clique nas logos rola suavemente ao topo da página
   document.querySelectorAll(".logo, .footer-logo").forEach((logo) => {
     logo.addEventListener("click", (e) => {
