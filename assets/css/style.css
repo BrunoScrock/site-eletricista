@@ -1589,7 +1589,6 @@ body.no-scroll {
   }
 
   .nav-menu {
-    display: none;
     position: absolute;
     top: 100%;
     left: 0;
@@ -1599,10 +1598,18 @@ body.no-scroll {
     backdrop-filter: blur(12px);
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.35);
     border-top: 1px solid rgba(255, 255, 255, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
   }
 
   .nav-menu.active {
-    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .nav-menu ul {
