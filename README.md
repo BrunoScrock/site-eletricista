@@ -1,4 +1,4 @@
-# C&M Automação e Elétrica — Site institucional
+# Charles M. — Eletricista em Curitiba
 
 Site profissional para divulgação de serviços elétricos de um eletricista autônomo / empresa de serviços elétricos. Estático, rápido e compatível com hospedagem gratuita (GitHub Pages, Cloudflare Pages, Netlify, Vercel).
 
@@ -21,7 +21,10 @@ Não usa framework, servidor ou banco de dados.
 ```text
 site-eletricista/
 │
-├── index.html              → Página principal (estrutura completa)
+├── index.html              → Página principal (estrutura completa + metatags SEO)
+├── sitemap.xml             → Sitemap XML para buscadores
+├── robots.txt              → Regras de indexação para buscadores
+├── llms.txt                → Resumo do site para modelos de IA (LLM)
 ├── README.md               → Este arquivo
 ├── .gitignore              → Arquivos ignorados pelo Git
 │
@@ -32,7 +35,7 @@ site-eletricista/
 │   │   ├── config.js       → Dados da empresa (WhatsApp, nome, cidade)
 │   │   └── script.js       → Funcionalidades (menu, galeria 3D, WhatsApp)
 │   ├── images/
-│   │   ├── logo/           → Logo da empresa
+│   │   ├── logo/           → Logo/favicon (logo-placeholder.svg)
 │   │   ├── hero/           → Imagem/banner do topo
 │   │   ├── servicos/       → Imagens/ícones dos serviços
 │   │   └── portfolio/      → Fotos das obras (uma pasta por obra)
@@ -89,12 +92,14 @@ Edite `assets/js/config.js`:
 
 ```javascript
 const CONFIG = {
-  empresa: "C&M Automação e Elétrica", // nome completo (rodapé, título da página)
-  logoNome: "C&M ELETRICA",            // nome curto no cabeçalho
+  empresa: "Charles M.", // nome completo (rodapé, título da página)
+  logoNome: "Charles M.", // nome curto no cabeçalho e rodapé
 };
 ```
 
 O título da página, o cabeçalho e o rodapé se atualizam automaticamente.
+
+> A logo do cabeçalho/rodapé é montada em HTML/CSS: quadrado branco com as iniciais **CM** (`.logo-box`/`.logo-iniciais`), nome em branco e subtítulo "Especialista em elétrica" em laranja (`#f97316`). O favicon usa `assets/images/logo/logo-placeholder.svg`.
 
 ## 7. Como adicionar novas imagens de obras
 
@@ -192,4 +197,13 @@ Projetos estáticos sem build funcionam em qualquer uma delas sem configuração
 
 ## 12. Futuras evoluções (não implementadas)
 
-Formulário de orçamento, área administrativa, cadastro de serviços/obras, upload de imagens, depoimentos de clientes, blog, integração com Google Maps/Instagram, Google Analytics, Google Search Console, sistema de agendamento, banco de dados e backend.
+Formulário de orçamento, área administrativa, cadastro de serviços/obras, upload de imagens, depoimentos de clientes, blog, integração com Instagram, Google Analytics, Google Search Console, sistema de agendamento, banco de dados e backend.
+
+## 13. Arquivos SEO e de IA
+
+O projeto inclui na raiz:
+
+- **`sitemap.xml`** — lista as URLs do site para os buscadores indexarem.
+- **`robots.txt`** — libera a indexação e aponta o sitemap (recomendado para o GitHub Pages, que usa `User-agent: *`).
+- **`llms.txt`** — arquivo no padrão [llmstxt.org](https://llmstxt.org) que resume o site para modelos de IA.
+- **Metatags** — no `<head>` do `index.html`: `description`, `keywords`, `robots` (index, follow), `theme-color`, `author` e Open Graph (`og:title`, `og:description`, `og:image`).

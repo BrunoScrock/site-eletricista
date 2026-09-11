@@ -1,0 +1,38 @@
+# Charles M. | Eletricista em Curitiba
+
+> Eletricista profissional em Curitiba e Região Metropolitana. Soluções elétricas e automação residencial, predial, comercial e industrial, com atendimento 24 horas.
+
+## Sobre
+
+Charles M. é especialista em elétrica e automação, atendendo Curitiba e Região Metropolitana. O site reúne os serviços oferecidos, áreas de especialidade, obras realizadas e dados de contato para orçamento via WhatsApp.
+
+- Profissional: Especialista em elétrica
+- Cidade: Curitiba e Região Metropolitana
+- Atendimento: 24 horas
+- Contato: orçamento via WhatsApp pelo site
+
+## Serviços
+
+- Residencial: instalação de tomadas, chuveiros, iluminação, manutenção elétrica, quadros elétricos, novas instalações e reparos.
+- Predial: manutenção elétrica, bombas de recalque, centros de medição, quadros elétricos, manutenção preventiva e corretiva.
+- Comercial: instalações elétricas para lojas e comércios.
+- Industrial: instalações e manutenções industriais.
+
+## Especialidades
+
+- Automação residencial e industrial.
+- Projetos e instalações conforme normas técnicas.
+- Rapidez e segurança em todas as execuções.
+
+## Obras Realizadas
+
+- Galeria 3D (coverflow) com fotos das obras nas categorias Industrial, Predial e Residencial.
+
+## Área de Atendimento
+
+- Curitiba e Região Metropolitana (mapa interativo na seção do site).
+
+## Links
+
+- Site: https://brunoscrock.github.io/site-eletricista/
+- Orçamento: via botão WhatsApp disponível no cabeçalho, seções e rodapé do site.

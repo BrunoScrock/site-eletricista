@@ -89,10 +89,14 @@ header {
   left: 0;
   width: 100%;
   height: var(--header-height);
-  background-color: var(--primary);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.96) 0%,
+    rgba(15, 23, 42, 0.85) 55%,
+    rgba(15, 23, 42, 0) 100%
+  );
   color: var(--white);
   z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .header-content {
