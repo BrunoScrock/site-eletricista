@@ -459,30 +459,23 @@ function aplicarConfiguracao() {
 function inicializarMenuMobile() {
   const botao = document.getElementById("mobileMenuBtn");
   const menu = document.querySelector(".nav-menu");
-  const icone = botao ? botao.querySelector("i") : null;
 
   if (!botao || !menu) return;
 
   const fecharMenu = () => {
     menu.classList.remove("active");
+    botao.classList.remove("open");
     if (botao) {
       botao.setAttribute("aria-expanded", "false");
       botao.setAttribute("aria-label", "Abrir menu");
     }
-    if (icone) {
-      icone.dataset.lucide = "menu";
-    }
-    if (window.lucide) window.lucide.createIcons();
   };
 
   botao.addEventListener("click", () => {
     const aberto = menu.classList.toggle("active");
+    botao.classList.toggle("open", aberto);
     botao.setAttribute("aria-expanded", aberto ? "true" : "false");
     botao.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
-    if (icone) {
-      icone.dataset.lucide = aberto ? "x" : "menu";
-    }
-    if (window.lucide) window.lucide.createIcons();
   });
 
   // Fecha o menu ao clicar em um link
