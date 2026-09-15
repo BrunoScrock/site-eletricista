@@ -557,11 +557,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   inicializarMenuMobile();
 
-  // Encolhe o cabeçalho e reforça a sombra ao rolar
+  // Encolhe o cabeçalho e ativa o vidro fosco ao rolar
   const header = document.getElementById("topo");
   if (header) {
     const aoRolar = () => {
       header.classList.toggle("scrolled", window.scrollY > 40);
+      header.classList.toggle("glass", window.scrollY > window.innerHeight * 0.5);
     };
     aoRolar();
     window.addEventListener("scroll", aoRolar, { passive: true });
