@@ -483,23 +483,23 @@ header.glass.scrolled::before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 130%;
-  height: 150%;
-  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.3) 0%, rgba(249, 115, 22, 0.14) 40%, transparent 70%);
-  filter: blur(28px);
+  width: 140%;
+  height: 160%;
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.18) 0%, rgba(249, 115, 22, 0.08) 45%, transparent 72%);
+  filter: blur(36px);
   pointer-events: none;
   z-index: -1;
-  animation: brilhoFundo 6s ease-in-out infinite alternate;
+  animation: brilhoFundo 8s ease-in-out infinite alternate;
 }
 
 @keyframes brilhoFundo {
   from {
-    opacity: 0.55;
+    opacity: 0.5;
     transform: translate(-50%, -50%) scale(1);
   }
   to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.07);
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(1.05);
   }
 }
 
