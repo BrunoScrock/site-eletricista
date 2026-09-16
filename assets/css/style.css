@@ -390,23 +390,12 @@ header.glass.scrolled::before {
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 20px;
-  background: linear-gradient(90deg, #ffffff 0%, #f5e6c8 25%, #f59e0b 50%, #f5e6c8 75%, #ffffff 100%);
-  background-size: 200% auto;
+  background: linear-gradient(90deg, #ffffff 0%, #fde68a 45%, #f59e0b 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: tituloBrilho 10s ease-in-out infinite alternate;
   filter: drop-shadow(0 6px 24px rgba(245, 158, 11, 0.4));
-}
-
-@keyframes tituloBrilho {
-  from {
-    background-position: 0% center;
-  }
-  to {
-    background-position: 100% center;
-  }
 }
 
 .hero-text p {
