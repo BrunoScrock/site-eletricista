@@ -390,22 +390,22 @@ header.glass.scrolled::before {
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 20px;
-  background: linear-gradient(90deg, #ffffff 0%, #fde68a 18%, #f59e0b 38%, #f97316 55%, #fde68a 78%, #ffffff 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #f5e6c8 25%, #f59e0b 50%, #f5e6c8 75%, #ffffff 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  animation: tituloBrilho 8s linear infinite;
+  animation: tituloBrilho 10s ease-in-out infinite alternate;
   filter: drop-shadow(0 6px 24px rgba(245, 158, 11, 0.4));
 }
 
 @keyframes tituloBrilho {
   from {
-    background-position: 200% center;
+    background-position: 0% center;
   }
   to {
-    background-position: -200% center;
+    background-position: 100% center;
   }
 }
 
@@ -482,7 +482,36 @@ header.glass.scrolled::before {
 }
 
 .hero-text {
+  position: relative;
+  isolation: isolate;
   animation: heroUp 0.8s ease-out both;
+}
+
+/* Brilho radial suave atrás do título */
+.hero-text::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130%;
+  height: 150%;
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.3) 0%, rgba(249, 115, 22, 0.14) 40%, transparent 70%);
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: -1;
+  animation: brilhoFundo 6s ease-in-out infinite alternate;
+}
+
+@keyframes brilhoFundo {
+  from {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.07);
+  }
 }
 
 .hero-photo {
