@@ -492,6 +492,36 @@ function inicializarMenuMobile() {
 }
 
 /* --------------------------------------------------------------------------
+   TELA DE CARREGAMENTO
+   -------------------------------------------------------------------------- */
+
+function iniciarLoader() {
+  const loader = document.getElementById("loader");
+  if (!loader) return;
+
+  // Nunca deixa a tela travada, mesmo se algo der errado
+  const esconder = () => {
+    loader.classList.add("is-oculto");
+    window.setTimeout(() => {
+      if (loader.parentNode) loader.parentNode.removeChild(loader);
+    }, 700);
+  };
+
+  if (document.readyState === "complete") {
+    window.setTimeout(esconder, 420);
+  } else {
+    window.addEventListener("load", () => {
+      window.setTimeout(esconder, 420);
+    });
+  }
+
+  // Rede de segurança: 4 segundos e o loader sai de qualquer forma
+  window.setTimeout(esconder, 4000);
+}
+
+iniciarLoader();
+
+/* --------------------------------------------------------------------------
    ANIMAÇÕES DE ENTRADA (REVEAL AO ROLAR)
    -------------------------------------------------------------------------- */
 
